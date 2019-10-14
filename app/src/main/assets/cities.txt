@@ -1,0 +1,18 @@
+﻿Hurzuf,UA
+Novinki,RU
+Gorkhā,NP
+country,IN
+Holubynka,NP
+Bāgmatī ZoneNP
+Mar’ina Roshcha,RU
+Republic of India,IN
+Kathmandu,NP
+Laspi,UA
+Merida,VE
+Vinogradovo,RU
+Tistrup Stationsby,EG
+Sig,DK
+Gørding,DK
+Strandby,DK
+Neustadt,country
+Mabiga",country

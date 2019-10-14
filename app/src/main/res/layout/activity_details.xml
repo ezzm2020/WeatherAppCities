@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    tools:context=".DetailsActivity">
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:padding="16dp"
+        android:layout_centerInParent="true"
+        android:stretchColumns="*"
+        tools:ignore="MissingConstraints">
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Pressure : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtpressuredd"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Wind : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtwidsd"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Humidity : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txthumudityd"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Sunrise : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_sunrised"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Sunsite : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtsunsited"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Geo coords : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtGEod"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>

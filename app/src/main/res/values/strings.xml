@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">WeatherAppCities</string>
+    <string name="title_activity_search">SEarchActivity</string>
+
+    <string-array name="cityslist">
+        <item>Hurzuf,UA</item>
+        <item>Novinki,RU</item>
+        <item> Gorkhā,NP</item>
+        <item> country,IN</item>
+        <item> Holubynka,NP</item>
+        <item>Bāgmatī ZoneNP</item>
+        <item> Mar’ina Roshcha,RU</item>
+        <item> Republic of India,IN</item>
+        <item> Kathmandu,NP</item>
+        <item> Laspi,UA</item>
+        <item>Merida,VE</item>
+        <item> Vinogradovo,RU</item>
+        <item>  Tistrup Stationsby,EG</item>
+        <item> Sig,DK</item>
+        <item> Gørding,DK</item>
+        <item>Strandby,DK</item>
+        <item>Neustadt,country</item>
+        <item> Mabiga",country</item>
+
+    </string-array>
+</resources>
