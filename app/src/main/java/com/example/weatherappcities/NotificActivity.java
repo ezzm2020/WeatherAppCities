@@ -84,12 +84,8 @@ public class NotificActivity extends AppCompatActivity {
 
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
 
-//        alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,,1000,
-//                AlarmManager.INTERVAL_HOUR, PendingIntent.getBroadcast(getApplicationContext()
-//                , 0, intent, PendingIntent.FLAG_UPDATE_CURRENT
-//        ));
+
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
-        // alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,System.currentTimeMillis(), 25000, pendingIntent);
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, pendingIntent);
 
 
