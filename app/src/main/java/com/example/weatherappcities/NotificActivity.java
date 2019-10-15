@@ -61,18 +61,18 @@ public class NotificActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getRetrofitClient();
         weatherAPI = retrofit.create(WeatherAPI.class);
 
-        CheckInternet internet=new CheckInternet(getBaseContext());
-        boolean check=internet.isconnect();
-        if(!check)
-        {
-            String name="برجاء التاكد من الاتصال بالانترنت";
-            Toast.makeText(getBaseContext(), name, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        else {
+//        CheckInternet internet=new CheckInternet(getBaseContext());
+//        boolean check=internet.isconnect();
+//        if(!check)
+//        {
+//            String name="برجاء التاكد من الاتصال بالانترنت";
+//            Toast.makeText(getBaseContext(), name, Toast.LENGTH_SHORT).show();
+//            finish();
+//        }
+//        else {
             getData();
             // startServices();
-        }
+        //}
     }
 
     public void startServices() {
