@@ -10,11 +10,6 @@ import com.google.android.material.snackbar.Snackbar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.databinding.adapters.SearchViewBindingAdapter;
-import androidx.databinding.library.baseAdapters.DataBinderMapperImpl;
-import com.example.weatherappcities.SEarchActivity.*;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import android.view.Menu;
@@ -31,14 +26,14 @@ import java.util.List;
 public class SEarchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     List<String> citylisy;
     RecAdapters recAdapters;
-ViewDataBinding bindingAdapter;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_search);
-        //bindingAdapter= DataBindingUtil.setContentView(this,R.layout.activity_search);
+       setContentView(R.layout.activity_search);
+
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -57,12 +52,12 @@ ViewDataBinding bindingAdapter;
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
 
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.toolbar, menu);
-//        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
-        MenuItem menuItem = menu.findItem(R.id.srechs);
-        SearchView searchView = (SearchView) menuItem.getActionView();
-        searchView.setOnQueryTextListener(this);
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.toolbar, menu);
+////        mSearchView = (SearchView) menu.findItem(R.id.action_search).getActionView();
+//        MenuItem menuItem = menu.findItem(R.id.srechs);
+//        SearchView searchView = (SearchView) menuItem.getActionView();
+//        searchView.setOnQueryTextListener(this);
         return true;
     }
 

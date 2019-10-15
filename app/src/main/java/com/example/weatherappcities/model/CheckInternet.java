@@ -15,9 +15,11 @@ public class CheckInternet {
     public boolean isconnect()
     {
         ConnectivityManager manager= (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+
              if(manager !=null)
              {
                  @SuppressLint("MissingPermission") NetworkInfo info=manager.getActiveNetworkInfo();
+
                  if(info !=null&&info.isConnected())
                  {
                      return  true;

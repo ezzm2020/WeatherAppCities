@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NotificActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/txtnamecitys"
+        android:gravity="center_horizontal"
+        android:textSize="40sp"
+         android:text="Egypt"
+        tools:ignore="MissingConstraints" />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/border"
+        android:padding="16dp"
+        android:layout_centerInParent="true"
+        android:stretchColumns="*"
+        tools:ignore="MissingConstraints">
+
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Pressure : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtpressureds"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Wind : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtwidss"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Humidity : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txthumuditys"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Sunrise : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txt_sunrises"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Sunsite : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtsunsites"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+        <TableRow
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            tools:ignore="UselessLeaf">
+
+            <TextView
+                android:layout_height="wrap_content"
+                android:text="Geo coords : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+            <TextView
+                android:layout_marginLeft="8dp"
+                android:layout_column="1"
+                android:id="@+id/txtGEos"
+                android:layout_height="wrap_content"
+                android:text="speed : "
+                android:textSize="20dp"
+                android:background="@drawable/cell"
+                android:layout_width="wrap_content"/>
+
+        </TableRow>
+    </TableLayout>
+</RelativeLayout>
