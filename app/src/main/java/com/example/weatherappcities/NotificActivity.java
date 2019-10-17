@@ -61,25 +61,18 @@ public class NotificActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getRetrofitClient();
         weatherAPI = retrofit.create(WeatherAPI.class);
 
-
             getData();
 
     }
 
     public void startServices() {
 
-
         Intent intent = new Intent(this, AMReceiver.class);
         intent.putExtra("citynameR", txtname.getText().toString());
-
-
         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
-
 
         PendingIntent pendingIntent = PendingIntent.getBroadcast(this, 0, intent, 0);
         alarmManager.setInexactRepeating(AlarmManager.ELAPSED_REALTIME_WAKEUP, System.currentTimeMillis() + AlarmManager.INTERVAL_HOUR, AlarmManager.INTERVAL_HOUR, pendingIntent);
-
-
         startService(intent);
     }
 

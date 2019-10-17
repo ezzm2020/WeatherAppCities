@@ -16,14 +16,20 @@ import com.example.weatherappcities.R;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import com.example.weatherappcities.model.models;
 public class RecAdapters extends RecyclerView.Adapter<RecAdapters.Viewholders> {
 
     List<String> namecity;
+    List<models>modelsList;
     ItemCliickLisnter itemCliickLisnter;
     Context context;
     public RecAdapters(List<String> namecity) {
         this.namecity = namecity;
+    }
+
+    public RecAdapters( Context context,List<models> modelsList) {
+        this.modelsList = modelsList;
+        this.context = context;
     }
 
     public RecAdapters(List<String> namecity, Context context) {
@@ -42,13 +48,12 @@ public class RecAdapters extends RecyclerView.Adapter<RecAdapters.Viewholders> {
     @Override
     public void onBindViewHolder(@NonNull Viewholders holder, int position) {
 
-        holder.textView.setText(namecity.get(position));
+        holder.textView.setText(modelsList.get(position).getCityname());
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(context, DetailsActivity.class);
                 intent.putExtra("pogif", position);
-
                 view.getContext().startActivity(intent);
             }
         });
