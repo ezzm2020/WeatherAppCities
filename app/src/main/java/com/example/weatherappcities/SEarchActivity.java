@@ -15,6 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelProviders;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,33 +28,34 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
 import com.example.weatherappcities.model.models;
+
 public class SEarchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
     List<String> citylisy;
     RecAdapters recAdapters;
 
-  List<models>modelsList;
+    List<models> modelsList;
 
     MainViewModel mainViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       setContentView(R.layout.activity_search);
+        setContentView(R.layout.activity_search);
 
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         citylisy = new ArrayList<>();
-        modelsList=new ArrayList<>();
+        modelsList = new ArrayList<>();
 
-        mainViewModel= ViewModelProviders.of(this).get(MainViewModel.class);
+        mainViewModel = ViewModelProviders.of(this).get(MainViewModel.class);
         mainViewModel.initt();
         mainViewModel.getModelslv().observe(this, new Observer<List<models>>() {
             @Override
             public void onChanged(List<models> models) {
-
                 recAdapters.notifyDataSetChanged();
-
             }
         });
 
@@ -68,12 +70,10 @@ public class SEarchActivity extends AppCompatActivity implements SearchView.OnQu
 
 
         RecyclerView recyclerView = findViewById(R.id.reccities);
-
         RecyclerView.LayoutManager manager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(manager);
         citylisy = Arrays.asList(getResources().getStringArray(R.array.cityslist));
-
-        recAdapters=new RecAdapters(getBaseContext(),mainViewModel.getModelslv().getValue());
+        recAdapters = new RecAdapters(getBaseContext(), mainViewModel.getModelslv().getValue());
         recyclerView.setAdapter(recAdapters);
 
     }
@@ -100,11 +100,10 @@ public class SEarchActivity extends AppCompatActivity implements SearchView.OnQu
     @Override
     public boolean onQueryTextChange(String newText) {
 
-        String inputst=newText.toLowerCase();
-        List<String>stringList=new ArrayList<>();
-        for (String text :citylisy)
-        {
-            if(text.toLowerCase().contains(inputst))
+        String inputst = newText.toLowerCase();
+        List<String> stringList = new ArrayList<>();
+        for (String text : citylisy) {
+            if (text.toLowerCase().contains(inputst))
                 stringList.add(text);
         }
         recAdapters.updateList(stringList);
