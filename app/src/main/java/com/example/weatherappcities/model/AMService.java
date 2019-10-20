@@ -27,17 +27,6 @@ public class AMService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
        String namecity=intent.getStringExtra("nMW");
 
-//        PendingIntent pendingIntent = PendingIntent.getActivity(this,
-//                0, intent, 0);
-//
-//        Notification notification = new NotificationCompat.Builder(this, CHANNEL_ID)
-//                .setContentTitle("Foreground Service")
-//                .setContentText(namecity)
-//                .setSmallIcon(R.drawable.ic_menu_vector)
-//                .setContentIntent(pendingIntent)
-         //       .build();
-
-
         NotificationManager notify_manager = (NotificationManager)
                 getSystemService(NOTIFICATION_SERVICE);
 
@@ -45,8 +34,6 @@ public class AMService extends Service {
         // set up a pending intent
         PendingIntent pending_intent_main_activity = PendingIntent.getActivity(this, 0,
                 intent_main_activity, 0);
-
-
 
 
         Calendar calendar=Calendar.getInstance();

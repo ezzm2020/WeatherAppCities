@@ -23,10 +23,10 @@ public class MainViewModel extends ViewModel {
         if (modelRepository != null) {
             return;
         }
+
          modelRepository = ModelRepository.getInstance();
          modeolist = modelRepository.getModelsRP();
          modedet =modelRepository.getDETsRP();
-
     }
 
     public LiveData<List<models>> getModelslv() {

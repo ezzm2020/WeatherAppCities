@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import com.example.weatherappcities.R;
+import com.example.weatherappcities.model.WeatherResult;
 import com.example.weatherappcities.model.models;
 
 public class ModelRepository {
@@ -22,6 +23,7 @@ public class ModelRepository {
         }
         return instance;
     }
+
 
     public MutableLiveData<List<models>> getModelsRP() {
         addModelsData();

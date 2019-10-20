@@ -1,6 +1,8 @@
 package com.example.weatherappcities;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -17,6 +19,8 @@ import android.widget.Toast;
 
 import com.example.weatherappcities.Retrofi.RetrofitClient;
 import com.example.weatherappcities.Retrofi.WeatherAPI;
+import com.example.weatherappcities.ViewModel.MainViewModel;
+import com.example.weatherappcities.ViewModel.WeatherViewModel;
 import com.example.weatherappcities.model.CheckInternet;
 import com.example.weatherappcities.model.Common;
 import com.example.weatherappcities.model.WeatherResult;
@@ -40,6 +44,9 @@ import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
 import io.reactivex.schedulers.Schedulers;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CurrentActivity extends AppCompatActivity {
@@ -55,6 +62,8 @@ public class CurrentActivity extends AppCompatActivity {
     CompositeDisposable compositeDisposable;
 
     RxPermissions rxPermissions;
+
+    WeatherViewModel weatherViewModel;
 
     @SuppressLint("CheckResult")
     @Override
@@ -74,17 +83,39 @@ public class CurrentActivity extends AppCompatActivity {
         sunsite = findViewById(R.id.txtsunsite);
         GEo = findViewById(R.id.txtGEo);
 
+
+        weatherViewModel = ViewModelProviders.of(this).get(WeatherViewModel.class);
+        weatherViewModel.initt();
+
+
+        weatherViewModel.getWeatherlv().observe(this, articleResponse -> {
+            if (articleResponse != null) {
+
+                presure.setText(new StringBuilder(String.valueOf(articleResponse.getMain().getTemp())).append(articleResponse.getName().toString()));
+
+                txthumudity.setText(new StringBuilder(String.valueOf(articleResponse.getMain().getTemp())).append("'c").toString());
+
+                txtname.setText(articleResponse.getName());
+                GEo.setText(new StringBuilder(String.valueOf(articleResponse.getCoord().getLat())).append(":").append(articleResponse.getCoord().getLon()));
+
+                sunrise.setText(new StringBuilder(String.valueOf(Common.convertunixtodate(articleResponse.getSys().sunrise))));
+                sunsite.setText(new StringBuilder(String.valueOf(Common.convertunixtodate(articleResponse.getSys().sunset))));
+
+
+            }
+        });
+
         txtname.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getBaseContext(),SEarchActivity.class);
+                Intent intent = new Intent(getBaseContext(), SEarchActivity.class);
                 startActivity(intent);
             }
         });
 
-        compositeDisposable = new CompositeDisposable();
-        Retrofit retrofit = RetrofitClient.getRetrofitClient();
-        weatherAPI = retrofit.create(WeatherAPI.class);
+//        compositeDisposable = new CompositeDisposable();
+//        Retrofit retrofit = RetrofitClient.getRetrofitClient();
+//        weatherAPI = retrofit.create(WeatherAPI.class);
         Dexter.withActivity(this)
                 .withPermissions(Manifest.permission.ACCESS_FINE_LOCATION,
                         Manifest.permission.ACCESS_COARSE_LOCATION)
@@ -93,37 +124,75 @@ public class CurrentActivity extends AppCompatActivity {
                     public void onPermissionsChecked(MultiplePermissionsReport report) {
 
                         if (report.areAllPermissionsGranted()) {
-                            BuildLocationRequest();
-                            BuildLocationCallBack();
 
-                             fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(CurrentActivity.this);
-                             fusedLocationProviderClient.requestLocationUpdates(locationRequest, locationCallback, Looper.myLooper());
-
+                            Toast.makeText(CurrentActivity.this, "" + report.toString(), Toast.LENGTH_SHORT).show();
                         }
                     }
 
                     @Override
                     public void onPermissionRationaleShouldBeShown(List<PermissionRequest> permissions, PermissionToken token) {
 
+                        Toast.makeText(CurrentActivity.this, "" + token.toString(), Toast.LENGTH_SHORT).show();
                     }
                 }).check();
+//
+//        CheckInternet internet = new CheckInternet(getBaseContext());
+//        boolean check = internet.isconnect();
+//        if (!check) {
+//            String name = "برجاء التاكد من الاتصال بالانترنت";
+//            Toast.makeText(CurrentActivity.this, name, Toast.LENGTH_SHORT).show();
+//            finish();
+//        } else {
+//            LocationManager locationManager = (LocationManager) Objects.requireNonNull(getBaseContext()).getSystemService(Context.LOCATION_SERVICE);
+//
+//            @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+//
+//
+//             //getData();
+//            getWeatherData();
+//
+//        }
+    }
 
-        CheckInternet internet=new CheckInternet(getBaseContext());
-        boolean check=internet.isconnect();
-        if(!check)
-        {
-            String name="برجاء التاكد من الاتصال بالانترنت";
-            Toast.makeText(CurrentActivity.this, name, Toast.LENGTH_SHORT).show();
-            finish();
-        }
-        else {
-            LocationManager locationManager = (LocationManager) Objects.requireNonNull(getBaseContext()).getSystemService(Context.LOCATION_SERVICE);
+    public void getWeatherData() {
+        LocationManager locationManager = (LocationManager) Objects.requireNonNull(getBaseContext()).getSystemService(Context.LOCATION_SERVICE);
 
-            @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+
+        String Latitude = String.valueOf(location.getLatitude());
+        String Longitude = String.valueOf(location.getLongitude());
+
+        Call call = weatherAPI.getCurrentWeatherData(Latitude, Longitude, Common.APP_ID, Common.UNITS);
+        call.enqueue(new Callback() {
+            @Override
+            public void onResponse(Call call, Response response) {
+
+                if (response.code() == 200) {
+                    WeatherResult weatherResult = (WeatherResult) response.body();
+                    assert weatherResult != null;
+
+                    presure.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append(weatherResult.getName().toString()));
+
+                    txthumudity.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append("'c").toString());
+
+                    txtname.setText(weatherResult.getName());
+                    GEo.setText(new StringBuilder(String.valueOf(weatherResult.getCoord().getLat())).append(":").append(weatherResult.getCoord().getLon()));
+
+                    sunrise.setText(new StringBuilder(String.valueOf(Common.convertunixtodate(weatherResult.getSys().sunrise))));
+                    sunsite.setText(new StringBuilder(String.valueOf(Common.convertunixtodate(weatherResult.getSys().sunset))));
+
+                }
 
 
-            getData();
-        }
+            }
+
+            @Override
+            public void onFailure(Call call, Throwable t) {
+
+                txtname.setText(t.getMessage());
+
+            }
+        });
     }
 
     public void getData() {
@@ -174,33 +243,32 @@ public class CurrentActivity extends AppCompatActivity {
     }
 
 
-
-    private void getWeather() {
-
-        compositeDisposable.add(weatherAPI.getWeatherByLating(String.valueOf(Common.currentLocation.getLatitude()),
-                String.valueOf(Common.currentLocation.getLongitude()),
-                Common.APP_ID,
-                Common.UNITS
-                ).subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(new Consumer<WeatherResult>() {
-                            @Override
-                            public void accept(WeatherResult weatherResult) throws Exception {
-
-                                txtname.setText(weatherResult.getName());
-//                        description.setText(new StringBuilder("Weather en").append(weatherResult.getName().toString()));
-                                presure.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append(weatherResult.getName().toString()));
-
-                                txthumudity.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append("'c").toString());
-                            }
-                        }, new Consumer<Throwable>() {
-                            @Override
-                            public void accept(Throwable throwable) throws Exception {
-                                Toast.makeText(getBaseContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
-                            }
-                        })
-        );
-    }
+//    private void getWeather() {
+//
+//        compositeDisposable.add(weatherAPI.getWeatherByLating(String.valueOf(Common.currentLocation.getLatitude()),
+//                String.valueOf(Common.currentLocation.getLongitude()),
+//                Common.APP_ID,
+//                Common.UNITS
+//                ).subscribeOn(Schedulers.io())
+//                        .observeOn(AndroidSchedulers.mainThread())
+//                        .subscribe(new Consumer<WeatherResult>() {
+//                            @Override
+//                            public void accept(WeatherResult weatherResult) throws Exception {
+//
+//                                txtname.setText(weatherResult.getName());
+////                        description.setText(new StringBuilder("Weather en").append(weatherResult.getName().toString()));
+//                                presure.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append(weatherResult.getName().toString()));
+//
+//                                txthumudity.setText(new StringBuilder(String.valueOf(weatherResult.getMain().getTemp())).append("'c").toString());
+//                            }
+//                        }, new Consumer<Throwable>() {
+//                            @Override
+//                            public void accept(Throwable throwable) throws Exception {
+//                                Toast.makeText(getBaseContext(), "" + throwable.getMessage(), Toast.LENGTH_SHORT).show();
+//                            }
+//                        })
+//        );
+//    }
 
     private void BuildLocationRequest() {
         locationRequest = new LocationRequest();

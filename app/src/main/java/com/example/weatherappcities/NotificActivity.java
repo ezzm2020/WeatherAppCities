@@ -1,14 +1,18 @@
 package com.example.weatherappcities;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.Manifest;
 import android.annotation.SuppressLint;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
+import android.os.Build;
 import android.os.Bundle;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -24,7 +28,13 @@ import com.example.weatherappcities.model.WeatherResult;
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationCallback;
 import com.google.android.gms.location.LocationRequest;
+import com.karumi.dexter.Dexter;
+import com.karumi.dexter.MultiplePermissionsReport;
+import com.karumi.dexter.PermissionToken;
+import com.karumi.dexter.listener.PermissionRequest;
+import com.karumi.dexter.listener.multi.MultiplePermissionsListener;
 
+import java.util.List;
 import java.util.Objects;
 
 import io.reactivex.Observable;
@@ -61,7 +71,13 @@ public class NotificActivity extends AppCompatActivity {
         Retrofit retrofit = RetrofitClient.getRetrofitClient();
         weatherAPI = retrofit.create(WeatherAPI.class);
 
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             getData();
+        }
+
+
+//
+
 
     }
 
@@ -93,11 +109,16 @@ public class NotificActivity extends AppCompatActivity {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void getData() {
 
         //Getting the Location Start
         LocationManager locationManager = (LocationManager) Objects.requireNonNull(getBaseContext()).getSystemService(Context.LOCATION_SERVICE);
-        @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+        if (checkSelfPermission(Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && checkSelfPermission(Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+            return;
+        }
+        Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
 
         String Latitude = String.valueOf(location.getLatitude());
         String Longitude = String.valueOf(location.getLongitude());
