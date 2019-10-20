@@ -33,19 +33,9 @@ public class MainViewModel extends ViewModel {
         return modeolist;
     }
 
-    //arb
-    public MutableLiveData<String> mutableLiveData = new MutableLiveData<>();
 
-    //arb
-    public void getmodeldt() {
-        String name = setmodel().getCityname();
-        mutableLiveData.setValue(name);
-    }
 
-    //arb
-    public models setmodel() {
-        return new models("Egypt");
-    }
+
 
 
 }

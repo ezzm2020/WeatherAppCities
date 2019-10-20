@@ -26,23 +26,6 @@ public class WeatherViewModel extends ViewModel {
     MutableLiveData<WeatherResult> weatherlv = new MutableLiveData<>();
     WeatherRepository modelRepository;
 
-//    public WeatherViewModel(@NonNull Application application) {
-//        super(application);
-//        modelRepository = new WeatherRepository();
-//        weatherlv = modelRepository.getWeathersRP("44.549999", "34.283333", Common.APP_ID, Common.UNITS);
-//    }
-
-//    public WeatherViewModel(@NonNull Application application) {
-//
-//
-////        LocationManager locationManager = (LocationManager)
-////            Objects.requireNonNull(application).getSystemService(Context.LOCATION_SERVICE);
-////
-////      @SuppressLint("MissingPermission") Location location = locationManager.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-//        modelRepository=new WeatherRepository();
-//        weatherlv =  modelRepository.getWeathersRP("44.549999","34.283333",Common.APP_ID,Common.UNITS);
-//
-//    }
 
     public void initt() {
         if (modelRepository != null) {

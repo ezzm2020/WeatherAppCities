@@ -42,7 +42,7 @@ public class WeatherRepository {
 
 
     public MutableLiveData<WeatherResult> getWeathersRP(String lat , String lon, String appid , String unit) {
-        //   addModelsData();
+
         apiRequest = RetrofitClient.getRetrofitClient().create(WeatherAPI.class);
 
         MutableLiveData<WeatherResult> data = new MutableLiveData<>();

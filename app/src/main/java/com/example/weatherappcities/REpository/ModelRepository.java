@@ -61,6 +61,6 @@ public class ModelRepository {
         modelsList.add(new models("Hurzuf,UA"));
         modelsList.add(new models("Vinogradovo,RU"));
         modelsList.add(new models("Hurzuf,UA"));
-        modelsList.add(new models("Tistrup Stationsby,EG"));
+
     }
 }
